@@ -34,4 +34,13 @@ public class StuDAOImpl implements StuDAO{
 	public void insertEnroll(EnrollVO vo) {
 		session.insert(namespace + ".insert_enroll", vo);
 	}
+
+	@Override
+	public void deleteEnroll(EnrollVO vo) {
+		session.delete(namespace + ".delete_enroll", vo);
+	}
 }
+
+
+
+

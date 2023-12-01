@@ -23,4 +23,11 @@ public class StuServiceImpl implements StuService{
 		cdao.updatePersons(vo.getLcode(), 1);
 	}
 
+	@Transactional
+	@Override
+	public void deleteEnroll(EnrollVO vo) {
+		sdao.deleteEnroll(vo);
+		cdao.updatePersons(vo.getLcode(), -1);
+	}
+
 }

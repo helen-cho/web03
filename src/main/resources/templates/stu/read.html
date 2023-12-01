@@ -18,7 +18,7 @@
 			<td>{{lcode}}</td>
 			<td>{{lname}}</td>
 			<td>{{persons}}/{{capacity}}</td>
-			<td><button>수강취소</button></td>
+			<td><button lcode="{{lcode}}">수강취소</button></td>
 		</tr>	
 		{{/each}}
 	</table>		
@@ -36,6 +36,24 @@
 <script>
 	const scode="[[${scode}]]";
 	$("#scode").html(scode + "의 수강신청");
+	
+	//수강취시버튼 클릭시
+	$("#div_enroll").on("click", "button", function(){
+		const lcode=$(this).attr("lcode");
+		if(confirm(`${lcode}강좌를 취소할래요?`)){
+			$.ajax({
+				type:"post",
+				url:"/stu/enroll/delete",
+				data:JSON.stringify({lcode, scode}),
+				contentType:"application/JSON",
+				success:function(){
+					alert("수강신청취소!");
+					getList();
+					getCou();
+				}
+			})
+		}	
+	});
 	
 	//수강신청버튼 클릭시
 	$("#div_cou").on("click", "#btn-insert", function(){

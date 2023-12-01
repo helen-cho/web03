@@ -44,6 +44,11 @@ public class StuRestController {
 	public void enrollInsert(@RequestBody EnrollVO vo) {
 		service.insertEnroll(vo);
 	}
+	
+	@PostMapping("/enroll/delete")
+	public void enrollDelete(@RequestBody EnrollVO vo) {
+		service.deleteEnroll(vo);
+	}
 }
 
 
