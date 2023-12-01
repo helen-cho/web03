@@ -18,21 +18,39 @@
 			<td>{{pcode}}</td>
 			<td>{{pname}}</td>
 			<td>{{dept}}</td>
+			<td><button pcode="{{pcode}}">삭제</button></td>
 		</tr>	
 		{{/each}}
 	</table>		
 </script>
-
 <script>
-	$.ajax({
-		type:"get",
-		url:"/pro/list.json",
-		data:{page:1, size:100},
-		success:function(data){
-			//console.log(data);
-			const temp=Handlebars.compile($("#temp_pro").html());
-			$("#div_pro").html(temp(data));
+	getList();
+	$("#div_pro").on("click", "button", function(){
+		const pcode=$(this).attr("pcode");
+		if(confirm(`${pcode}번 교수를 삭제하실래요?`)){
+			$.ajax({
+				type:"post",
+				url:"/pro/delete/" + pcode,
+				success:function(){
+					alert("삭제성공");
+					getList();
+				}
+			})
+			
 		}
 	});
+	
+	function getList(){
+		$.ajax({
+			type:"get",
+			url:"/pro/list.json",
+			data:{page:1, size:100},
+			success:function(data){
+				//console.log(data);
+				const temp=Handlebars.compile($("#temp_pro").html());
+				$("#div_pro").html(temp(data));
+			}
+		});
+	}
 </script>
 </html>
