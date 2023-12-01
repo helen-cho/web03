@@ -35,4 +35,17 @@ public class ProDAOImpl implements ProDAO{
 	public void delete(String pcode) {
 		session.delete(namespace + ".delete", pcode);
 	}
+
+	@Override
+	public HashMap<String, Object> read(String pcode) {
+		return session.selectOne(namespace + ".read", pcode);
+	}
+
+	@Override
+	public void update(ProVO vo) {
+		session.update(namespace + ".update", vo);
+	}
 }
+
+
+

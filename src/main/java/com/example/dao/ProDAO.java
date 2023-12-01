@@ -7,4 +7,6 @@ public interface ProDAO {
 	public int total();
 	public void insert(ProVO vo);
 	public void delete(String pcode);
+	public HashMap<String,Object> read(String pcode);
+	public void update(ProVO vo);
 }

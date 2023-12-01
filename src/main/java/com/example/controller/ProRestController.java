@@ -20,6 +20,11 @@ public class ProRestController {
 	@Autowired
 	ProDAO dao;
 	
+	@GetMapping("/read.json/{pcode}")
+	public HashMap<String,Object> read(@PathVariable("pcode") String pcode){
+		return dao.read(pcode);
+	}
+	
 	@GetMapping("/list.json")
 	public HashMap<String,Object> list(QueryVO vo){
 		HashMap<String,Object> map=new HashMap<String,Object>();
@@ -37,5 +42,10 @@ public class ProRestController {
 	public void delete(@PathVariable("pcode") String pcode) {
 		System.out.println("..............." + pcode);
 		dao.delete(pcode);
+	}
+	
+	@PostMapping("/update")
+	public void update(@RequestBody ProVO vo) {
+		dao.update(vo);
 	}
 }

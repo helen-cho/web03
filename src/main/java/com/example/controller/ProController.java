@@ -1,7 +1,9 @@
 package com.example.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -16,5 +18,11 @@ public class ProController {
 	@GetMapping("/insert")
 	public String insert() {
 		return "pro/insert";
+	}
+	
+	@GetMapping("/read/{pcode}")
+	public String read(@PathVariable("pcode") String pcode, Model model) {
+		model.addAttribute("pcode", pcode);
+		return "pro/read";
 	}
 }
