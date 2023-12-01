@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.example.domain.EnrollVO;
+
 @Repository
 public class StuDAOImpl implements StuDAO{
 	@Autowired
@@ -23,4 +25,8 @@ public class StuDAOImpl implements StuDAO{
 		return session.selectList(namespace + ".list_enroll", scode);
 	}
 
+	@Override
+	public int check(EnrollVO vo) {
+		return session.selectOne(namespace + ".check", vo);
+	}
 }

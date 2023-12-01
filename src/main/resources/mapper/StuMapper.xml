@@ -9,4 +9,9 @@
 		from enrollments e, courses c
 		where e.lcode=c.lcode and scode=#{scode};
 	</select>
+	<select id="check" resultType="int">
+		select count(*)
+		from enrollments
+		where scode=#{scode} and lcode=#{lcode}
+	</select>
 </mapper>

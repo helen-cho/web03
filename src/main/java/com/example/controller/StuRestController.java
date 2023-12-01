@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.dao.StuDAO;
+import com.example.domain.EnrollVO;
 
 @RestController
 @RequestMapping("/stu")
@@ -26,5 +27,10 @@ public class StuRestController {
 	@GetMapping("/enroll/list.json/{scode}") //localhost:8080/stu/enroll/list.json/95454003
 	public List<HashMap<String, Object>> listEnroll(@PathVariable("scode") String scode){
 		return dao.listEnroll(scode);
+	}
+	
+	@GetMapping("/enroll/check")
+	public int check(EnrollVO vo) {
+		return dao.check(vo);
 	}
 }

@@ -25,17 +25,30 @@
 </script>
 
 <script id="temp_cou" type="x-handlebars-template">
-	<select>
+	<select id="lcode">
 		{{#each .}}
 			<option value="{{lcode}}">{{lcode}}:{{lname}}:{{persons}}/{{capacity}}</option>
 		{{/each}}
 	</select>
-	<button>수강신청</button>	
+	<button id="btn-insert">수강신청</button>	
 </script>
 	
 <script>
 	const scode="[[${scode}]]";
 	$("#scode").html(scode + "의 수강신청");
+	
+	//수강신청버튼 클릭시
+	$("#div_cou").on("click", "#btn-insert", function(){
+		const lcode=$("#lcode").val();
+		$.ajax({
+			type:"get",
+			url:"/stu/enroll/check",
+			data:{scode, lcode},
+			success:function(data){
+				alert(data);
+			}
+		})	
+	});
 	
 	getList();
 	function getList(){
