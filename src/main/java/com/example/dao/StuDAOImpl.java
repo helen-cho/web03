@@ -29,4 +29,9 @@ public class StuDAOImpl implements StuDAO{
 	public int check(EnrollVO vo) {
 		return session.selectOne(namespace + ".check", vo);
 	}
+
+	@Override
+	public void insertEnroll(EnrollVO vo) {
+		session.insert(namespace + ".insert_enroll", vo);
+	}
 }

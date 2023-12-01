@@ -18,4 +18,11 @@ public class CouDAOImpl implements CouDAO{
 		return session.selectList(namespace + ".list");
 	}
 
+	@Override
+	public void updatePersons(String lcode, int amount) {
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("lcode", lcode);
+		map.put("amount", amount);
+		session.update(namespace + ".update_persons", map);
+	}
 }
